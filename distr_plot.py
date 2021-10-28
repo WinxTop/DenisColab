@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def main():
-    x_max = 6
+    x_max = 8
     y_max = 6
     coords = read_file()
     for i in coords:
@@ -14,7 +14,7 @@ def main():
             print(square[x][y], end = " ")
         print(end = "\n")
     data = square.reshape(square.shape[0]*square.shape[1])
-    plotting(square, x_max, y_max)
+    plotting(square)
     histogram(data)
 
 def read_file(file_name="input.txt"):
@@ -39,12 +39,9 @@ def rad_calc(coords, x_max, y_max):
                 square[x][y] += intensity
     return square
 
-def plotting(square, x_max, y_max):
-    x = np.arange(0, x_max + 1, 1)  # len = 11
-    y = np.arange(0, y_max + 1, 1)  # len = 7
-
+def plotting(square):
     fig, ax = plt.subplots()
-    ax.pcolormesh(x, y, square)
+    ax.pcolormesh(square)
     ax.set_aspect('equal')
     plt.pcolor(square, cmap = plt.get_cmap('viridis', 11))
     plt.colorbar()
